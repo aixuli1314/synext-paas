@@ -1,0 +1,64 @@
+package ${package.Controller};
+
+import co.synext.common.base.resp.ReturnDatas;
+import ${package.Entity}.${entity};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}InputDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}UpdateDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}QueryDTO;
+import ${VOPkg}.${nonPrefixEntityNameUpper}VO;
+import ${package.Service}.${table.serviceName};
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+
+
+/**
+ * <p>
+ * $!{table.comment} 控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Api(tags = "$!{table.comment}接口")
+@RestController
+@RequestMapping("/${package.ModuleName}/api/kjj/${nonPrefixEntityNameLower}")
+@AllArgsConstructor
+public class ${nonPrefixEntityNameUpper}Controller {
+    private final ${table.serviceName} ${nonPrefixEntityNameLower}Service;
+
+    @ApiOperation(value = "$!{table.comment}列表接口")
+    @GetMapping("/list")
+    public ReturnDatas<Page<${entity}>> getPage(${nonPrefixEntityNameUpper}QueryDTO ${nonPrefixEntityNameLower}QueryDTO) {
+        return ${nonPrefixEntityNameLower}Service.page(${nonPrefixEntityNameLower}QueryDTO);
+    }
+
+    @ApiOperation(value = "$!{table.comment}保存接口")
+    @PostMapping
+    public ReturnDatas<Boolean> save(@Valid ${nonPrefixEntityNameUpper}InputDTO ${nonPrefixEntityNameLower}InputDTO) {
+        return ${nonPrefixEntityNameLower}Service.save(${nonPrefixEntityNameLower}InputDTO);
+    }
+
+    @ApiOperation(value = "$!{table.comment}更新接口")
+    @PostMapping("/update")
+    public ReturnDatas<Boolean> updateById(@Valid ${nonPrefixEntityNameUpper}UpdateDTO ${nonPrefixEntityNameLower}UpdateDTO) {
+        return ${nonPrefixEntityNameLower}Service.update(${nonPrefixEntityNameLower}UpdateDTO);
+    }
+
+    @ApiOperation(value = "$!{table.comment}详情接口")
+    @GetMapping("/{id}")
+    public ReturnDatas<${entity}> getById(@PathVariable String id) {
+        return ${nonPrefixEntityNameLower}Service.findById(id);
+    }
+
+    @ApiOperation(value = "$!{table.comment}删除接口")
+    @DeleteMapping("/{id}")
+    public ReturnDatas<Boolean> removeById(@PathVariable String id) {
+        return ${nonPrefixEntityNameLower}Service.deleteById(id);
+    }
+
+
+}

@@ -1,0 +1,69 @@
+package ${DTOPkg};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import ${package.Entity}.${entity};
+import co.synext.common.base.convert.Converter;
+import co.synext.common.base.dto.BaseDTO;
+import co.synext.common.utils.WarpsUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * ${entity}UpdateDTO对象
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+@ToString
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value="${nonPrefixEntityNameUpper}UpdateDTO对象")
+public class ${nonPrefixEntityNameUpper}UpdateDTO extends BaseDTO<${nonPrefixEntityNameUpper}UpdateDTO, ${entity}>  implements Serializable {
+
+    #if(${entitySerialVersionUID})
+    private static final long serialVersionUID = 1L;
+    #end
+
+    #foreach($field in ${table.fields})
+    #set($sort=$foreach.count)
+    #if("$!field.comment" != "")
+    /**
+    * ${field.comment}
+    */
+    @ApiModelProperty(value = "${sort}-${field.comment}" )
+    #end
+    private ${field.propertyType} ${field.propertyName};
+    #end
+
+    public static Converter<${nonPrefixEntityNameUpper}UpdateDTO, ${entity}> converter = new Converter<${nonPrefixEntityNameUpper}UpdateDTO, ${entity}>() {
+        @Override
+        public ${entity} doForward(${nonPrefixEntityNameUpper}UpdateDTO ${nonPrefixEntityNameLower}UpdateDTO) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}UpdateDTO, ${entity}.class);
+        }
+
+        @Override
+        public ${nonPrefixEntityNameUpper}UpdateDTO doBackward(${entity} ${nonPrefixEntityNameLower}) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}, ${nonPrefixEntityNameUpper}UpdateDTO.class);
+        }
+    };
+
+    @Override
+    public ${entity} convertToEntity() {
+        return converter.doForward(this);
+    }
+
+    @Override
+    public ${nonPrefixEntityNameUpper}UpdateDTO convertFor(${entity} ${nonPrefixEntityNameLower}) {
+        return converter.doBackward(${nonPrefixEntityNameLower});
+    }
+}

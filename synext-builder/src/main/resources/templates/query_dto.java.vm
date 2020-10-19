@@ -1,0 +1,85 @@
+package ${DTOPkg};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import ${package.Entity}.${entity};
+import co.synext.common.base.convert.Converter;
+import co.synext.common.base.dto.BaseDTO;
+import co.synext.common.utils.WarpsUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * <p>
+ * ${nonPrefixEntityNameUpper}QueryDTO对象
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+@ToString
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value="${nonPrefixEntityNameUpper}QueryDTO对象")
+public class ${nonPrefixEntityNameUpper}QueryDTO extends BaseDTO<${nonPrefixEntityNameUpper}QueryDTO, ${entity}>  implements Serializable {
+
+    #if(${entitySerialVersionUID})
+    private static final long serialVersionUID = 1L;
+    #end
+
+    @ApiModelProperty(value = "1-当前页码")
+    public Integer pageNo = 1;
+
+    @ApiModelProperty(value = "2-分页数量")
+    public Integer pageSize = 20;
+
+    #foreach($field in ${table.fields})
+    #set($sort=$foreach.count + 2)
+    #if(!${field.keyFlag})
+    #set($sort=$sort - 1)
+    #if("$!field.comment" != "")
+    /**
+    * ${field.comment}
+    */
+    @ApiModelProperty(value = "${sort}-${field.comment}" )
+    #end
+    private ${field.propertyType} ${field.propertyName};
+    #end
+    #end
+
+    public Page<${entity}> page() {
+        return new Page<>(pageNo, pageSize);
+    }
+
+    public static Converter<${nonPrefixEntityNameUpper}QueryDTO, ${entity}> converter = new Converter<${nonPrefixEntityNameUpper}QueryDTO, ${entity}>() {
+        @Override
+        public ${entity} doForward(${nonPrefixEntityNameUpper}QueryDTO ${nonPrefixEntityNameLower}QueryDTO) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}QueryDTO, ${entity}.class);
+        }
+
+        @Override
+        public ${nonPrefixEntityNameUpper}QueryDTO doBackward(${entity} ${nonPrefixEntityNameLower}) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}, ${nonPrefixEntityNameUpper}QueryDTO.class);
+        }
+    };
+
+    @Override
+    public ${entity} convertToEntity() {
+        return converter.doForward(this);
+    }
+
+    @Override
+    public ${nonPrefixEntityNameUpper}QueryDTO convertFor(${entity} ${nonPrefixEntityNameLower}) {
+        return converter.doBackward(${nonPrefixEntityNameLower});
+    }
+}

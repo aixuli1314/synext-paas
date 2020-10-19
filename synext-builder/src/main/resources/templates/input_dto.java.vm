@@ -1,0 +1,72 @@
+package ${DTOPkg};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import ${package.Entity}.${entity};
+import co.synext.common.base.convert.Converter;
+import co.synext.common.base.dto.BaseDTO;
+import co.synext.common.utils.WarpsUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * ${nonPrefixEntityNameUpper}InputDTO对象
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+@ToString
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value="Input${nonPrefixEntityNameUpper}DTO对象")
+public class ${nonPrefixEntityNameUpper}InputDTO extends BaseDTO<${nonPrefixEntityNameUpper}InputDTO, ${entity}>  implements Serializable {
+
+    #if(${entitySerialVersionUID})
+    private static final long serialVersionUID = 1L;
+    #end
+
+    #foreach($field in ${table.fields})
+    #set($sort=$foreach.count)
+    #if(!${field.keyFlag})
+    #set($sort=$sort - 1)
+    #if("$!field.comment" != "")
+    /**
+    * ${field.comment}
+    */
+    @ApiModelProperty(value = "${sort}-${field.comment}" )
+    #end
+    private ${field.propertyType} ${field.propertyName};
+    #end
+    #end
+
+    public static Converter<${nonPrefixEntityNameUpper}InputDTO, ${entity}> converter = new Converter<${nonPrefixEntityNameUpper}InputDTO, ${entity}>() {
+        @Override
+        public ${entity} doForward(${nonPrefixEntityNameUpper}InputDTO ${nonPrefixEntityNameLower}InputDTO) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}InputDTO, ${entity}.class);
+        }
+
+        @Override
+        public ${nonPrefixEntityNameUpper}InputDTO doBackward(${entity} ${nonPrefixEntityNameLower}) {
+            return WarpsUtils.copyTo(${nonPrefixEntityNameLower}, ${nonPrefixEntityNameUpper}InputDTO.class);
+        }
+    };
+
+    @Override
+    public ${entity} convertToEntity() {
+        return converter.doForward(this);
+    }
+
+    @Override
+    public ${nonPrefixEntityNameUpper}InputDTO convertFor(${entity} ${nonPrefixEntityNameLower}) {
+        return converter.doBackward(${nonPrefixEntityNameLower});
+    }
+}

@@ -1,0 +1,60 @@
+package ${package.Service};
+
+import co.synext.common.base.resp.ReturnDatas;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${package.Entity}.${entity};
+import ${DTOPkg}.${nonPrefixEntityNameUpper}InputDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}UpdateDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}QueryDTO;
+import ${superServiceClassPackage};
+import java.io.Serializable;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    /**
+     * 分页方法
+     * @param ${nonPrefixEntityNameLower}QueryDTO
+     * @return
+     */
+    ReturnDatas page(${nonPrefixEntityNameUpper}QueryDTO ${nonPrefixEntityNameLower}QueryDTO);
+
+    /**
+     * 保存方法
+     * @param ${nonPrefixEntityNameLower}InputDTO
+     * @return
+     */
+    ReturnDatas save(${nonPrefixEntityNameUpper}InputDTO ${nonPrefixEntityNameLower}InputDTO);
+
+    /**
+     * 更新方法
+     * @param ${nonPrefixEntityNameLower}UpdateDTO
+     * @return
+     */
+    ReturnDatas update(${nonPrefixEntityNameUpper}UpdateDTO ${nonPrefixEntityNameLower}UpdateDTO);
+
+    /**
+     * 查询方法
+     * @param id
+     * @return
+     */
+    ReturnDatas findById(Serializable id);
+
+    /**
+     * 删除方法
+     * @param id
+     * @return
+     */
+    ReturnDatas deleteById(Serializable id);
+}
+#end

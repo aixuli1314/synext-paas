@@ -1,0 +1,38 @@
+package ${VOPkg};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * ${entity}VO对象
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+@ApiModel(value="${entity}VO对象", description="$!{table.comment}")
+public class ${nonPrefixEntityNameUpper}VO implements Serializable {
+
+    #if(${entitySerialVersionUID})
+    private static final long serialVersionUID = 1L;
+    #end
+
+    #foreach($field in ${table.fields})
+    #if("$!field.comment" != "")
+    /**
+    * ${field.comment}
+    */
+    @ApiModelProperty(value = "${foreach.count}-${field.comment}" )
+    #end
+    private ${field.propertyType} ${field.propertyName};
+    #end
+
+}

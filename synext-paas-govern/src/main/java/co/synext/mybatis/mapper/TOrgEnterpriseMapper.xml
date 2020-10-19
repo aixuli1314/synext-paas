@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TOrgEnterpriseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TOrgEnterprise">
+        <id column="id" property="id" />
+        <result column="orgTypePathKey" property="orgTypePathKey" />
+        <result column="name" property="name" />
+        <result column="contactAddress" property="contactAddress" />
+        <result column="contactPersonName" property="contactPersonName" />
+        <result column="contactPhone" property="contactPhone" />
+        <result column="contactEmail" property="contactEmail" />
+        <result column="bType" property="bType" />
+        <result column="bAddress" property="bAddress" />
+        <result column="bLegalPerson" property="bLegalPerson" />
+        <result column="bCapital" property="bCapital" />
+        <result column="bCreateTime" property="bCreateTime" />
+        <result column="bTermStart" property="bTermStart" />
+        <result column="bTermEnd" property="bTermEnd" />
+        <result column="bScope" property="bScope" />
+        <result column="sortno" property="sortno" />
+        <result column="active" property="active" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, orgTypePathKey, name, contactAddress, contactPersonName, contactPhone, contactEmail, bType, bAddress, bLegalPerson, bCapital, bCreateTime, bTermStart, bTermEnd, bScope, sortno, active
+    </sql>
+
+</mapper>

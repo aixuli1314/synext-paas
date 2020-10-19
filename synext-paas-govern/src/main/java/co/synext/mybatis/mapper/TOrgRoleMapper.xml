@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TOrgRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TOrgRole">
+        <id column="id" property="id" />
+        <result column="orgId" property="orgId" />
+        <result column="roleId" property="roleId" />
+        <result column="children" property="children" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,orgId, roleId, children
+    </sql>
+
+</mapper>

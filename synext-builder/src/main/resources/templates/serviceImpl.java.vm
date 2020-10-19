@@ -1,0 +1,64 @@
+package ${package.ServiceImpl};
+
+import co.synext.common.base.resp.ReturnDatas;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${DTOPkg}.${nonPrefixEntityNameUpper}InputDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}UpdateDTO;
+import ${DTOPkg}.${nonPrefixEntityNameUpper}QueryDTO;
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import java.io.Serializable;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service("${table.serviceImplName}")
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+    @Override
+    public ReturnDatas page(${nonPrefixEntityNameUpper}QueryDTO ${nonPrefixEntityNameLower}QueryDTO) {
+        ${entity} ${nonPrefixEntityNameLower} = ${nonPrefixEntityNameLower}QueryDTO.convertToEntity();
+        return ReturnDatas.ok(baseMapper.selectPage(${nonPrefixEntityNameLower}QueryDTO.page(), getLambdaQueryWrapper().setEntity(${nonPrefixEntityNameLower})));
+    }
+
+    @Override
+    public ReturnDatas save(${nonPrefixEntityNameUpper}InputDTO ${nonPrefixEntityNameLower}InputDTO) {
+        ${entity} ${nonPrefixEntityNameLower} = ${nonPrefixEntityNameLower}InputDTO.convertToEntity();
+        baseMapper.insert(${nonPrefixEntityNameLower});
+        return ReturnDatas.ok(true);
+    }
+
+    @Override
+    public ReturnDatas update(${nonPrefixEntityNameUpper}UpdateDTO ${nonPrefixEntityNameLower}UpdateDTO) {
+        ${entity} ${nonPrefixEntityNameLower} = ${nonPrefixEntityNameLower}UpdateDTO.convertToEntity();
+        baseMapper.updateById(${nonPrefixEntityNameLower});
+        return ReturnDatas.ok(true);
+    }
+
+    @Override
+    public ReturnDatas findById(Serializable id) {
+        ${entity} ${nonPrefixEntityNameLower} = baseMapper.selectById(id);
+        return ReturnDatas.ok(${nonPrefixEntityNameLower});
+    }
+
+    @Override
+    public ReturnDatas deleteById(Serializable id) {
+        baseMapper.deleteById(id);
+        return ReturnDatas.ok(true);
+    }
+
+}
+#end

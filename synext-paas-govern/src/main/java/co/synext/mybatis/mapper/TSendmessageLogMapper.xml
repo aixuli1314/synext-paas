@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TSendmessageLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TSendmessageLog">
+        <id column="id" property="id" />
+        <result column="orgTypePathKey" property="orgTypePathKey" />
+        <result column="templateId" property="templateId" />
+        <result column="businessModule" property="businessModule" />
+        <result column="businessId" property="businessId" />
+        <result column="sendType" property="sendType" />
+        <result column="sendTime" property="sendTime" />
+        <result column="successTime" property="successTime" />
+        <result column="errorTime" property="errorTime" />
+        <result column="readTime" property="readTime" />
+        <result column="fromUserId" property="fromUserId" />
+        <result column="toUserId" property="toUserId" />
+        <result column="content" property="content" />
+        <result column="errorMessage" property="errorMessage" />
+        <result column="status" property="status" />
+        <result column="sortno" property="sortno" />
+        <result column="active" property="active" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, orgTypePathKey, templateId, businessModule, businessId, sendType, sendTime, successTime, errorTime, readTime, fromUserId, toUserId, content, errorMessage, status, sortno, active
+    </sql>
+
+</mapper>

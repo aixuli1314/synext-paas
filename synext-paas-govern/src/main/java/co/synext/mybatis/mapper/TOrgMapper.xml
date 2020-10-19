@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TOrgMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TOrg">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="create_time" property="createTime" />
+        <result column="org_type" property="orgType" />
+        <result column="sortno" property="sortno" />
+        <result column="comcode" property="comcode" />
+        <result column="org_type_path_key" property="orgTypePathKey" />
+        <result column="update_time" property="updateTime" />
+        <result column="pid" property="pid" />
+        <result column="remark" property="remark" />
+        <result column="active" property="active" />
+        <result column="update_user_id" property="updateUserId" />
+        <result column="create_user_id" property="createUserId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, create_time, comcode, pid, org_type, sortno, org_type_path_key, update_time ,remark, active, update_user_id, create_user_id
+    </sql>
+
+    <!-- 删除多条 -->
+<!--    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM t_org WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>-->
+</mapper>

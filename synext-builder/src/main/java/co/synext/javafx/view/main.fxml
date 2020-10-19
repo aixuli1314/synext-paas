@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0"
+      prefWidth="667.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.synext.javafx.controller.MainController">
+    <children>
+        <Pane prefHeight="52.0" prefWidth="600.0">
+            <children>
+                <Label layoutX="22.0" layoutY="10.0" text="Hello world!">
+                    <font>
+                        <Font size="25.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="msg" layoutX="359.0" layoutY="9.0" prefHeight="36.0" prefWidth="286.0" text="Label">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <TableView fx:id="tableList" focusTraversable="false" onMouseClicked="#mouseEvent" prefHeight="390.0"
+                   prefWidth="667.0">
+            <columns>
+                <TableColumn fx:id="tableName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="213.0"
+                             style="-fx-alignment: center" text="表名"/>
+                <TableColumn fx:id="engine" prefWidth="124.0" style="-fx-alignment: center" text="存储引擎"/>
+                <TableColumn fx:id="createTime" prefWidth="145.0" style="-fx-alignment: center" text="创建时间"/>
+                <TableColumn fx:id="tableComment" minWidth="0.0" prefWidth="176.0" style="-fx-alignment: center"
+                             text="注释"/>
+            </columns>
+        </TableView>
+        <Pagination fx:id="page" prefWidth="677.0"/>
+    </children>
+</VBox>

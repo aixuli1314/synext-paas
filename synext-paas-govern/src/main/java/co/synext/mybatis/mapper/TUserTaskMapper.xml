@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TUserTaskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TUserTask">
+        <id column="ID" property="id" />
+        <result column="PROC_DEF_KEY" property="procDefKey" />
+        <result column="PROC_DEF_NAME" property="procDefName" />
+        <result column="TASK_DEF_KEY" property="taskDefKey" />
+        <result column="TASK_NAME" property="taskName" />
+        <result column="TASK_TYPE" property="taskType" />
+        <result column="CANDIDATE_NAME" property="candidateName" />
+        <result column="CANDIDATE_IDS" property="candidateIds" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, PROC_DEF_KEY, PROC_DEF_NAME, TASK_DEF_KEY, TASK_NAME, TASK_TYPE, CANDIDATE_NAME, CANDIDATE_IDS
+    </sql>
+
+</mapper>

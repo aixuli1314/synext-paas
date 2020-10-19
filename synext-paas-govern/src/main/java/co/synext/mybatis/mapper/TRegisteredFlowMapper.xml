@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TRegisteredFlowMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TRegisteredFlow">
+        <id column="id" property="id" />
+        <result column="orgTypePathKey" property="orgTypePathKey" />
+        <result column="userId" property="userId" />
+        <result column="userType" property="userType" />
+        <result column="businessModule" property="businessModule" />
+        <result column="createTime" property="createTime" />
+        <result column="submitTime" property="submitTime" />
+        <result column="approvalDate" property="approvalDate" />
+        <result column="approvalUserId" property="approvalUserId" />
+        <result column="rejectionDate" property="rejectionDate" />
+        <result column="rejectionDescription" property="rejectionDescription" />
+        <result column="status" property="status" />
+        <result column="sortno" property="sortno" />
+        <result column="active" property="active" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, orgTypePathKey, userId, userType, businessModule, createTime, submitTime, approvalDate, approvalUserId, rejectionDate, rejectionDescription, status, sortno, active
+    </sql>
+
+</mapper>

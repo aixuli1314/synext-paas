@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="510.0" prefWidth="480.0" style="-fx-background-color: #848484" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.synext.javafx.controller.SetupController">
+    <children>
+        <GridPane prefHeight="485.0" prefWidth="438.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="109.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="297.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="30.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="123.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="262.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="2.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints />
+            </rowConstraints>
+            <children>
+                <Label alignment="CENTER_RIGHT" prefWidth="51.0" text="表名 " textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label text="包名" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label text="模块" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tableName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="packageName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="moduleName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="作者" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="author" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label prefHeight="24.0" prefWidth="254.0" text="Hello World 代码生成设置" textFill="#67d9fc" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#doGenerate" prefHeight="23.0" prefWidth="115.0" text="生成代码" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                <Label text="SERVICE" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="serviceClassName" prefHeight="23.0" prefWidth="308.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label text="CONTROLLER" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="controllerClassName" prefHeight="23.0" prefWidth="308.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label text="只生成Mapper" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="onlyGenMapper" prefHeight="23.0" prefWidth="308.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <Label text="是否覆盖" textFill="#67d9fc" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="genOverride" prefHeight="23.0" prefWidth="308.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

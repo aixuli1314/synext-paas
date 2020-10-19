@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.synext.mybatis.mapper.TMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="co.synext.mybatis.entity.TMenu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="comcode" property="comcode" />
+        <result column="pid" property="pid" />
+        <result column="remark" property="remark" />
+        <result column="hrefurl" property="hrefurl" />
+        <result column="menu_type" property="menuType" />
+        <result column="icon" property="icon" />
+        <result column="sortno" property="sortno" />
+        <result column="active" property="active" />
+        <result column="has_child" property="hasChildren" />
+        <result column="permission_key" property="permissionKey" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, comcode, pid, remark, hrefurl, menu_type, icon, sortno, active,permission_key,has_child
+    </sql>
+
+    <!-- 根据角色id查询菜单 -->
+    <select id="selectByRoleIds" resultMap="BaseResultMap">
+        SELECT  sm.*
+        FROM t_menu sm
+        JOIN t_role_menu srm
+        ON sm.id = srm.menu_id
+        <where>
+            <foreach collection="collection" separator="," item="roleId"  open=" srm.role_id  in (" close=")">
+                #{roleId}
+            </foreach>
+        </where>
+        group by sm.id
+    </select>
+
+</mapper>
