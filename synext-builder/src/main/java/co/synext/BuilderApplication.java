@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Bean;
 public class BuilderApplication extends AbstractJavaFxApplicationSupport {
 
     public static void main(String[] args) {
-        try {
+        try { 
             AppUtil.checkRepeatRun();
             launch(BuilderApplication.class, MainView.class, new NonSplashScreen(), args);
         } catch (Exception e) {
