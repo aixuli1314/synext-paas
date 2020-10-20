@@ -1,5 +1,6 @@
 package co.synext.module.system.service.impl;
 
+import co.synext.common.utils.SpringContextHolder;
 import co.synext.module.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,12 +16,12 @@ import org.springframework.stereotype.Service;
 @Service(value = "UserDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private IUserService userService;
+    //@Autowired //SpringContextHolder.getBean(UserServiceImpl.class)
+    //private IUserService userService ;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userService.login(username);
+        return SpringContextHolder.getBean(IUserService.class).login(username);
     }
 
 }

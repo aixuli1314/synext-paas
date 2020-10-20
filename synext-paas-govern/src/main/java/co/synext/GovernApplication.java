@@ -4,13 +4,14 @@ import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @MapperScan("co.synext.mybatis.mapper")
 @EnableSwagger2
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class,DataSourceAutoConfiguration.class})
 public class GovernApplication {
 
     public static void main(String[] args) {

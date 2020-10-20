@@ -26,6 +26,7 @@ import co.synext.common.base.vo.UserVo;
 import co.synext.common.constant.Constant;
 import co.synext.common.exception.BizException;
 import co.synext.common.utils.HttpClientUtils;
+import co.synext.common.utils.SpringContextHolder;
 import co.synext.config.security.details.LoginUser;
 import co.synext.config.security.helper.LoginUserHelper;
 import co.synext.module.system.dto.UserDTO;
@@ -45,7 +46,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl extends BaseService<TUserMapper, TUser> implements IUserService {
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
     private final IRoleService roleService;
     private final IMenuService menuService;
     private final IUserRoleService userRoleService;
@@ -131,6 +132,7 @@ public class UserServiceImpl extends BaseService<TUserMapper, TUser> implements 
         TUser user = copy2(userDto, TUser.class);
         String id = getWorkId();
         user.setId(id);
+        PasswordEncoder passwordEncoder = SpringContextHolder.getBean(PasswordEncoder.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -171,6 +173,7 @@ public class UserServiceImpl extends BaseService<TUserMapper, TUser> implements 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         user.setUpdateTime(dateFormat.format(date));
         if (StringUtil.isNotEmpty(user.getPassword())) {
+        	PasswordEncoder passwordEncoder = SpringContextHolder.getBean(PasswordEncoder.class);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         updateById(user);
