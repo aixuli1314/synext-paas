@@ -2,6 +2,7 @@ package co.synext.config.security.helper;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.CharsetUtil;
+import co.synext.common.utils.SpringContextHolder;
 import co.synext.config.security.service.RedisClientDetailsService;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +18,9 @@ public class ClientDetailsHelper {
     @Autowired
     private RedisClientDetailsService redisClientDetailsService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public ClientDetails getClientDetails(String clientId, String clientSecret) throws UnapprovedClientAuthenticationException {
         ClientDetails clientDetails = redisClientDetailsService.loadClientByClientId(clientId);
+        PasswordEncoder passwordEncoder = SpringContextHolder.getBean(PasswordEncoder.class);
         if (clientDetails == null) {
             throw new UnapprovedClientAuthenticationException("clientId对应的信息不存在");
         } else if (!passwordEncoder.matches(clientSecret, clientDetails.getClientSecret())) {
