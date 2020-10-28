@@ -2,6 +2,7 @@ package co.synext.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import co.synext.common.base.resp.ReturnDatas;
+import co.synext.common.utils.SpringContextHolder;
 import co.synext.config.security.handler.RestOauth2LogoutHandler;
 import co.synext.config.security.handler.RestLoginSuccessHandler;
 import co.synext.config.security.handler.RestResourceAuthExceptionEntryPoint;
@@ -69,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices;
+    private AuthorizationServerTokenServices authorizationServerTokenServices = SpringContextHolder.getBean(AuthorizationServerTokenServices.class);;
 
     @Autowired
     private ClientDetailsHelper clientDetailsHelper;
