@@ -70,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices = SpringContextHolder.getBean(AuthorizationServerTokenServices.class);;
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
 
     @Autowired
     private ClientDetailsHelper clientDetailsHelper;
