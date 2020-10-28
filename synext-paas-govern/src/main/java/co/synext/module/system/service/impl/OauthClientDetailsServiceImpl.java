@@ -2,6 +2,7 @@ package co.synext.module.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import co.synext.common.exception.BizException;
+import co.synext.common.utils.SpringContextHolder;
 import co.synext.common.base.resp.ReturnDatas;
 import co.synext.mybatis.entity.TOauthClientDetails;
 import co.synext.mybatis.mapper.TOauthClientDetailsMapper;
@@ -22,15 +23,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class OauthClientDetailsServiceImpl extends ServiceImpl<TOauthClientDetailsMapper, TOauthClientDetails> implements IOauthClientDetailsService {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @Override
     public ReturnDatas createClient(TOauthClientDetails sysOauthClientDetails) {
         if (!StringUtils.isNotEmpty(sysOauthClientDetails.getClientSecretStr())) {
             throw new BizException("ClientSecret不能为空!");
         }
-        sysOauthClientDetails.setClientSecret(passwordEncoder.encode(sysOauthClientDetails.getClientSecret()));
+        sysOauthClientDetails.setClientSecret(SpringContextHolder.getBean(PasswordEncoder.class).encode(sysOauthClientDetails.getClientSecret()));
         save(sysOauthClientDetails);
         return ReturnDatas.ok();
     }
@@ -41,7 +40,7 @@ public class OauthClientDetailsServiceImpl extends ServiceImpl<TOauthClientDetai
             throw new BizException("更新失败，没有主键参数！!");
         }
         if (StringUtils.isNotEmpty(sysOauthClientDetails.getClientSecretStr())) {
-            sysOauthClientDetails.setClientSecret(passwordEncoder.encode(sysOauthClientDetails.getClientSecretStr()));
+            sysOauthClientDetails.setClientSecret(SpringContextHolder.getBean(PasswordEncoder.class).encode(sysOauthClientDetails.getClientSecretStr()));
         }
         updateById(sysOauthClientDetails);
         return ReturnDatas.ok();
