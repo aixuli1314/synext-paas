@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @date 2020/4/21 19:54
  * @description: TODO
  */
-@Service(value = "UserDetailsServiceImpl")
+@Service(value = "userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     //@Autowired //SpringContextHolder.getBean(UserServiceImpl.class)

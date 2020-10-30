@@ -69,7 +69,7 @@ public class OAuth2Configuration {
         private AuthenticationManager authenticationManager;
 
         @Autowired
-        private UserDetailsService userDetailsServiceImpl;
+        private UserDetailsService userDetailsService;
 
         @Autowired
         private RedisTokenStore redisTokenStore;
@@ -86,7 +86,7 @@ public class OAuth2Configuration {
             endpoints
                     .tokenStore(redisTokenStore)
                     .authenticationManager(authenticationManager)
-                    .userDetailsService(userDetailsServiceImpl)
+                    .userDetailsService(userDetailsService)
                     .authorizationCodeServices(redisAuthorizationCodeService)
                     .reuseRefreshTokens(false)
                     .exceptionTranslator(new RestWebResponseExceptionTranslator());

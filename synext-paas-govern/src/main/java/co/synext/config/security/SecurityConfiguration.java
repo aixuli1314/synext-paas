@@ -49,9 +49,9 @@ import java.util.Map;
 @EnableConfigurationProperties(PermitUrlProperties.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("UserDetailsServiceImpl")
+    //@Qualifier("UserDetailsServiceImpl")
     @Autowired
-    private UserDetailsService userDetailsServiceImpl;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private IUserConnectionService userConnectionService;
@@ -139,7 +139,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public AuthenticationProvider mobileAuthProvider() {
-        MobileAuthProvider mobileAuthProvider = new MobileAuthProvider(userDetailsServiceImpl,smsValidateCodeService);
+        MobileAuthProvider mobileAuthProvider = new MobileAuthProvider(userDetailsService,smsValidateCodeService);
         return mobileAuthProvider;
     }
 
@@ -150,7 +150,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public AuthenticationProvider wxMaAuthProvider() {
-        AuthenticationProvider wxMaAuthProvider = new WxMaAuthProvider(userDetailsServiceImpl,userConnectionService);
+        AuthenticationProvider wxMaAuthProvider = new WxMaAuthProvider(userDetailsService,userConnectionService);
         return wxMaAuthProvider;
     }
 
@@ -162,7 +162,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceImpl)
+        auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
 
